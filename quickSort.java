@@ -12,8 +12,7 @@ public class quickSort {
 		l.add(10); l.add(7); l.add(13); l.add(22); l.add(9);
 		//l.get(2);
 		
-		System.out.println(l.get(2));
-	    //System.out.println(sort(l));
+	    System.out.println(sort(l));
 		
 		
 	}
@@ -21,15 +20,15 @@ public class quickSort {
 	
 	public static List<Integer> sort(List<Integer> l) {
 
-		//if (l.size() < 2) {
-		//	return l;
-		//}
+		if (l.size() <= 1) {
+			return l;
+		}
 
-		int pivot = l.get(0);
+		int pivot = l.get(l.size()/2);
 		List<Integer> left = new ArrayList<Integer>();
 		List<Integer> right = new ArrayList<Integer>();
 
-		for (int i = 0; i < l.size(); i++) {
+		for (int i = 1; i < l.size(); i++) {
 			if (l.get(i) < pivot) {
 				left.add(l.get(i));
 				//System.out.println(left);
@@ -51,9 +50,9 @@ public class quickSort {
 		
 		l.add(pivot);
 		
-		for (int i = l.size(); i < right.size(); i++) {
-			l.add(right.get(i));
-		}
+		for (int i = 0; i < right.size(); i++) {
+	        l.add(right.get(i));
+	}
 		return l;
 	}
 	
