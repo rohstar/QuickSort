@@ -13,28 +13,26 @@ public class quickSort {
 		//l.get(2);
 		
 	    System.out.println(sort(l));
-		
-		
 	}
 
-	
 	public static List<Integer> sort(List<Integer> l) {
 
 		if (l.size() <= 1) {
 			return l;
 		}
 
-		int pivot = l.get(l.size()/2);
+		int pivot = l.get(0);
 		List<Integer> left = new ArrayList<Integer>();
 		List<Integer> right = new ArrayList<Integer>();
 
 		for (int i = 1; i < l.size(); i++) {
 			if (l.get(i) < pivot) {
 				left.add(l.get(i));
-				//System.out.println(left);
+				
 			} else {
 				right.add(l.get(i));
-			}
+				
+			}	
 
 		}
 		return join(sort(left), sort(right), pivot);
