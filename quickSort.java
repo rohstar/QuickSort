@@ -1,65 +1,52 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-public class quickSort {
-
-	/**
-	 * @param args
-	 */
+public class main
+{
+	
 	public static void main(String[] args) {
-
-		List<Integer> l = new ArrayList<Integer>();
-		//l.add(10); l.add(7); l.add(13); l.add(22); l.add(9);
-		//l.get(2);
-		Random rd = new Random();
-		for (int i=0; i<10000;i++){
-
-			l.add(rd.nextInt(1000));	
-		}
-		long start = System.currentTimeMillis();
-	    //System.out.println(sort(l));
-		sort(l);
-	    long end = System.currentTimeMillis();
-	    System.out.println((end-start)/1000+" secs");
-	}
-
-	public static List<Integer> sort(List<Integer> l) {
-
-		if (l.size() <= 1) {
-			return l;
-		}
-
-		int pivot = l.get(0);
-		List<Integer> left = new ArrayList<Integer>();
-		List<Integer> right = new ArrayList<Integer>();
-
-		for (int i = 1; i < l.size(); i++) {
-			if (l.get(i) < pivot) {
-				left.add(l.get(i));
-				
-			} else {
-				right.add(l.get(i));
-			
-			}	
-		}
-		return join(sort(left), sort(right), pivot);
-	}
-
-	public static List<Integer> join(List<Integer> left, List<Integer> right, int pivot) {
-
-		List<Integer> l =  new ArrayList<Integer>();
-
-		for (int i = 0; i < left.size(); i++) {
-			l.add(left.get(i));
-		}
 		
-		l.add(pivot);
-		
-		for (int i = 0; i < right.size(); i++) {
-	        l.add(right.get(i));
+	int [] arr = {8, 5, 3, 9, 2, 11, 12,22, 44, 9, -1, 4, 6};
+	quickSort(arr, 0, arr.length-1);
+	print(arr);
+	// returns -1,2,3,4,5,6,8,9,9,11,12,22,44
+	
 	}
-		return l;
+	
+	public static void print(int [] arr){
+		for(int i = 0; i < arr.length; i++){
+			String print = (i == arr.length - 1) ?  ""  : ",";
+			System.out.print(arr[i] + print);
+		}System.out.println();
+	}
+	
+	public static void swap(int[] arr, int i, int j){	
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;	
+	}
+	
+	
+	public static int partitionForQuickSort(int [] arr, int startIndex, int endIndex){
+		//print(arr);
+		int pivot = arr[endIndex];
+		int pivotIndex = endIndex;
+		int partitionIndex = startIndex;	
+		for(int i = startIndex; i < endIndex; i++ ){		
+			if(arr[i] <= pivot ){
+				swap(arr, i, partitionIndex);
+				partitionIndex++;
+			}
+		}
+		swap(arr,partitionIndex,pivotIndex);
+		return partitionIndex;
+	}
+	
+	public static int[] quickSort(int [] arr, int startIndex, int endIndex){
+		
+		if(startIndex < endIndex){
+			int partitionIndex = partitionForQuickSort(arr, startIndex, endIndex);
+			quickSort(arr, startIndex, partitionIndex - 1);
+			quickSort(arr, partitionIndex + 1, endIndex);
+		}
+		return arr;
 	}
 	
 }
