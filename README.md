@@ -1,4 +1,4 @@
-# My Java Implementations of Popular Sorting Algorithms
+# My Implementations of Popular Sorting Algorithms in Java
 
 - QuickSort
 - MergeSort
